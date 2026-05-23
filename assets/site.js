@@ -12,3 +12,9 @@ function calc(){
 }
 document.querySelectorAll('#bailAmount,#bondPercent,#fees').forEach(el=>el.addEventListener('input',calc));calc();
 document.querySelectorAll('form[data-request-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();const msg=form.querySelector('[data-form-message]');if(msg)msg.textContent='Request received. An agent will use the approved phone or text route to follow up.';}));
+document.querySelectorAll('video').forEach(video=>{
+ video.controls=false; video.muted=true; video.loop=true; video.playsInline=true;
+ const start=()=>video.play().catch(()=>{});
+ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start,{once:true}); else start();
+ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) start(); });
+});
